@@ -6,17 +6,15 @@ import piusMonMajorProject.Handler;
 
 public abstract class State {
 	//state manager
-	private static State currentState = null;
-	
+	private static State currentState = null;	
 	public static void setState(State state) {
-		 currentState = state;
+		currentState = state;
 	}
 	
 	public static State getState() {
 		System.out.println(currentState);
 		return currentState;
 	}
-	
 	
 	// CLASS
 	public Handler handler;
