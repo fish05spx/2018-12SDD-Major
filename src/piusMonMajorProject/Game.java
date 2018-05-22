@@ -64,7 +64,7 @@ public class Game implements Runnable {
 		homeState = new HomeState(handler);
 		statisticsState = new StatisticsState(handler);
 
-		State.setState(gameState);
+		State.setState(statisticsState);
 	}
 
 	private void tick() {
@@ -102,8 +102,8 @@ public class Game implements Runnable {
 	public void run() {
 		init();
 
-		// animation stuff/frame counter
-
+	
+		// Frame Counter (limits frame rate)
 		double delta = 0;
 		long now;
 		long lastTime = System.nanoTime();
@@ -135,16 +135,6 @@ public class Game implements Runnable {
 	public MouseManager getMouseManager(){
 		return mouseManager;
 	}
-	
-	public synchronized void start() {
-		if (running) {
-			return;
-		}
-		running = true;
-		thread = new Thread(this);
-		thread.start();
-
-	}
 
 	public int getWidth() {
 		return width;
@@ -152,6 +142,15 @@ public class Game implements Runnable {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public synchronized void start() {
+		if (running) {
+			return;
+		}
+		running = true;
+		thread = new Thread(this);
+		thread.start();
 	}
 
 	public synchronized void stop() {
@@ -166,7 +165,4 @@ public class Game implements Runnable {
 		}
 
 	}
-
-
-
 }
